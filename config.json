@@ -9,6 +9,10 @@
     "roleforproduct": "",
     "nameproduct": "ExampleName",
     "linkproduct": "https://examplesite.com/download",
-    "versionproduct": "1.0"
+    "versionproduct": "1.0",
+
+
+    "_statuslist": "Status : detected, unsafe, undetected",
+    "statusproduct": "unsafe"
     
 }
