@@ -7,7 +7,7 @@ const client = new Client({
     intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"],
     partials: ["USER", "REACTION", "MESSAGE", "GUILD_SCHEDULED_EVENT", "GUILD_MEMBER", "CHANNEL"]
 })
-const { token, prefix, status, typestatus, color, roleforproduct, linkproduct, nameproduct, versionproduct } = require('./config.json')
+const { token, prefix, status, typestatus, color, roleforproduct, linkproduct, nameproduct, versionproduct, statusproduct } = require('./config.json')
 
 
 client.on('ready', () => {
@@ -37,7 +37,37 @@ client.on('messageCreate', (msg) => {
       }
         
     }
-  
+    if (msg.content == prefix + "status")
+    {
+      if (statusproduct == "detected")
+      {
+        const statusembed = new MessageEmbed()
+        .setTitle("STATUS PRODUCT")
+        .addField("Status:", "Detected :red_circle:")
+        .setColor(color)
+        .setFooter({ text: msg.author.tag, iconURL:   msg.author.displayAvatarURL()})
+        msg.channel.send({ embeds: [statusembed] })
+      }
+      else if (statusproduct == "unsafe")
+      {
+        const statusembed = new MessageEmbed()
+        .setTitle("STATUS PRODUCT")
+        .addField("Status:", "UnSafe :yellow_circle:")
+        .setColor(color)
+        .setFooter({ text: msg.author.tag, iconURL:   msg.author.displayAvatarURL()})
+        msg.channel.send({ embeds: [statusembed] })
+      }
+      else if (statusproduct == "undetected")
+      {
+        const statusembed = new MessageEmbed()
+        .setTitle("STATUS PRODUCT")
+        .addField("Status:", "Undetected :green_circle:")
+        .setColor(color)
+        .setFooter({ text: msg.author.tag, iconURL:   msg.author.displayAvatarURL()})
+        msg.channel.send({ embeds: [statusembed] })
+      }
+
+    }
 })
 
 client.login(token)
